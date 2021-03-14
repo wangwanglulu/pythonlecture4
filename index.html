@@ -1,0 +1,1025 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lecture 4</title>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
+    <link rel="stylesheet" href="css/theme/custom.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/googlecode.css">
+    <!-- Printing and PDF exports -->
+    <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal" style="background-color: #fff;">
+        <div class="slides">
+            <section data-background-video="bgm.mp4" data-background-video-loop data-background-video-muted style="text-align: left;">
+                <h2 style="color: white">Python Programming</h2>
+                <h5 style="color: white">Lecture 4 Strings, Dictionaries</h5>
+            </section>
+            <section>
+                <section data-background="#2980b9" style="color: white">
+                    <h2 style="color: white">4.1 Strings</h2>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p>A string is a sequence of characters. The elements of a string are characters. Empty string ''.<b>(not' ')</b> You can access the characters one at a time with the bracket operator:</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> fruit = 'banana'
+>>> letter = fruit[1]
+>>> print(letter)
+a
+
+>>> len(fruit)
+6
+</code></pre>
+                        </div>
+                        <li class="fragment">
+                            <p>iteration and conditional execution</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+fruit = 'banana'
+for char in fruit:
+    print(char)
+</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+word = 'banana'
+count = 0
+for letter in word:
+    if letter == 'a':
+        count = count + 1
+print(count)
+</code></pre>
+                        </div>
+                </section>
+                <section>
+                    <ul>
+                        <li>
+                            <p>String slices</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> fruit = 'banana'
+>>> fruit[1:3]
+'an'
+>>> fruit[3:]
+'ana'
+</code></pre>
+                    </div>
+                    <ul>
+                        <li class="fragment">
+                            <p><b>Strings are immutable</b>, lists are mutable</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> greeting = 'Hello, world!'
+>>> greeting[0] = 'J'
+TypeError: 'str' object does not 
+support item assignment
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> greeting = 'Hello, world!'
+>>> new_greeting = 'J' + greeting[1:]
+>>> print(new_greeting)
+Jello, world!
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p>The in operator</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> print('a' in 'banana')
+True
+>>> print('seed' in 'banana')
+False
+>>> print('x' in ['x','y','z'])
+True
+</code></pre>
+                    </div>
+                    <ul>
+                        <li class="fragment">
+                            <p>String comparison</p>
+                            <p>Comparison operations are useful for putting words in alphabetical order.</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> print('apple'>'banana')
+False
+>>> print('ba' > 'banana')
+False
+>>> print([0, 1, 2] < [0, 3, 4])
+True
+>>> a_list = ["orange", "apple", "banana"]
+>>> a_list.sort()
+>>> print(a_list)
+['apple', 'banana', 'orange']
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p>Some useful string methods</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> stuff = 'Hello world'
+>>> dir(stuff)
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+['__add__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__',
+ '__eq__', '__format__','__ge__', '__getattribute__', '__getitem__', 
+ '__getnewargs__', '__gt__', '__hash__', '__init__', '__init_subclass__', 
+ '__iter__', '__le__','__len__', '__lt__', '__mod__', '__mul__', '__ne__', 
+ '__new__', '__reduce__','__reduce_ex__', '__repr__', '__rmod__', '__rmul__', 
+ '__setattr__', '__sizeof__','__str__', '__subclasshook__', 'capitalize', 
+ 'casefold', 'center', 'count', 'encode', 'endswith', 'expandtabs', 'find', 
+ 'format', 'format_map', 'index', 'isalnum', 'isalpha', 'isdecimal', 'isdigit', 
+ 'isidentifier', 'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle', 
+ 'isupper', 'join', 'ljust','lower', 'lstrip', 'maketrans', 'partition', 
+ 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 
+ 'split', 'splitlines', 'startswith','strip', 'swapcase', 'title', 'translate', 
+ 'upper', 'zfill']
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> help(str.title)
+Help on method_descriptor:
+title(...)
+    S.title() -> str
+    Return a titlecased version of S, i.e. words start with title case
+    characters, all remaining cased characters have lower case.
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p><b>.title(), .lower(), .upper()</b></p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <div>
+                            <pre><code class="line-numbers" data-trim contenteditable >
+>>> name = "ada lovelace"
+>>> print(name.title())
+Ada Lovelace
+
+>>> print(name)
+ada lovelace
+</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable >
+>>> name = "Ada Lovelace"
+>>> print(name.upper())
+ADA LOVELACE
+
+>>> print(name.lower())
+ada lovelace
+</code></pre>
+                        </div>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p><b>.find()</b> searches for the position of a string in another string</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> word = 'banana'
+>>> index = word.find('a')
+>>> print(index)
+1
+>>> word.find('na')
+2
+>>> word.find('na', 3)
+4
+</code></pre>
+                    </div>
+                    <ul>
+                        <li class="fragment">
+                            <p><b>.startswith()</b> returns the boolean value</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> line = 'Have a nice day'
+>>> line.startswith('h') 
+False
+
+>>> line.lower()
+'have a nice day'
+
+>>> line.lower().startswith('h')
+True
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p>Parsing strings</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> data = 'From stephen.marquard@uct.ac.za Sat Jan 5 09:14:16 2008'
+>>> atpos = data.find('@')
+>>> print(atpos)
+21
+>>> sppos = data.find(' ',atpos)
+>>> print(sppos)
+31
+>>> host = data[atpos+1 : sppos]
+>>> print(host)
+uct.ac.za
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p><b>.split()</b> break a sentence into words and make a list</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> s = 'pining for the fjords'
+>>> t = s.split()
+>>> print(t)
+['pining', 'for', 'the', 'fjords']
+>>> print(t[2])
+the
+</code></pre>
+                    </div>
+                    <ul>
+                        <li class="fragment">
+                            <p>One can break a word into letters.</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> s = 'spam'
+>>> t = list(s)
+>>> print(t)
+['s', 'p', 'a', 'm']
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p>Format operator <b>$%$</b></p>
+                        </li>
+                        <li class="fragment">
+                            <p>It allows us to construct strings, replacing parts of the strings with the data stored in variables.</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> number = 42
+>>> print('I have spotted %d camels.' % number)
+I have spotted 42 camels.
+</code></pre>
+                        </div>
+                        <li class="fragment">
+                            <p>What if we do not use format operator?</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> number = 42
+>>> print('I have spotted number camels.') #error.
+>>> print('I have spotted '+str(number)+' camels.') #not simple
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p>If there is more than one format sequence in the string, use ().</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> print('In %d years I have spotted %g %s.' % (3, 0.1, 'camels'))
+In 3 years I have spotted 0.1 camels.
+</code></pre>
+                        </div>
+                        <li class="fragment">
+                            <p><b>The number of elements in the tuple must match the number of format sequences in the string. The types of the elements also must match the format sequences.</b></p>
+                        </li>
+                        <li class="fragment">.format()</li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> print('In {} years I spotted {} {}.'.format(3, 0.1, 'camels'))
+In 3 years I have spotted 0.1 camels.
+
+>>> print('In {0} years I have spotted {1} {2}.'.format(3, 0.1, 'camels'))
+In 3 years I have spotted 0.1 camels.
+
+>>> print('In {1} years I have spotted {0} {2}.'.format(3, 0.1, 'camels'))
+In 0.1 years I have spotted 3 camels.
+</code></pre>
+                        </div>
+                    </ul>
+                </section>
+                <section>
+                    <h3>String: Summary</h3>
+                    <ul>
+                        <li class="fragment">
+                            <p>The elements of a string are characters. Empty string '' </p>
+                        </li>
+                        <li class="fragment">
+                            <p>Features: Ordered, Immutable, Repeatable</p>
+                        </li>
+                        <li class="fragment">
+                            <p>Index and slice are the same with that of lists.</p>
+                        </li>
+                        <li class="fragment">
+                            <p>in operator shows the boolean value for whether a string contains a given string. You can compare two strings in Alphabetical order. (Lists can do similar things)</p>
+                        </li>
+                        <li class="fragment">
+                            <p><b>.upper(), lower(), .title(), .find(), .startwith(), .split() </b>(list('string') and list())</p>
+                        </li>
+                        <li class="fragment">
+                            <p>Format operator: %d integer, %g float, %s string (use () for more than one format sequence), .format()</p>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section data-background="#2980b9" style="color: white">
+                    <h2 style="color: white">4.2 Dictionaries</h2>
+                </section>
+                <section>
+                    <ul>
+                        <li>
+                            <p>A dictionary is like a list, but more general. In a list, the index positions have to be integers; in a dictionary, the indices can be (almost) any type.</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> x = {} #This is False
+>>> print(x)
+{}
+</code></pre>
+                        </div>
+                        <li class="fragment">
+                            <p>The empty dictionary can be written as dict(). Similarly, an empty list can be list().</p>
+                        </li>
+                        <li class="fragment">
+                            <p>You can think of a dictionary as a mapping between a set of indices (which are called keys) and a set of values.</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> x['one'] = 'uno'
+>>> print(x)
+{'one': 'uno'}
+</code></pre>
+                        </div>
+                        <li class="fragment">
+                            <p>In general, the order of items in a dictionary is unpredictable.</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> x = {'one': 'apple', 'two': 'banana', 'three': 'orange'}
+>>> print(x)
+{'one': 'apple', 'three': 'orange', 'two': 'banana'}
+
+>>> print(x['two'])
+'banana'
+</code></pre>
+                        </div>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p>Adding New Key-Value Pairs</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> alien = {}
+>>> alien['color'] = 'green'
+>>> alien['point'] = 5
+>>> print(alien)
+{'color': 'green', 'points': 5}
+</code></pre>
+                        </div>
+                        <li class="fragment">
+                            <p>To create a dictionary, start with an empty one, and add the key-value pairs. The keys should be immutable and there is no repeated key. <b>Lists cannot be keys in the dictionary.</b></p>
+                        </li>
+                        <li class="fragment">
+                            <p>Modifying Values in a Dictionary</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> alien['color'] = 'yellow'
+>>> print(alien)
+{'color': 'yellow', 'points': 5}
+</code></pre>
+                        </div>
+                        <li class="fragment">
+                            <p>Removing Key-Value Pairs</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> del alien['points']
+>>> print(alien)
+{'color': 'yellow'}
+</code></pre>
+                        </div>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p>Merge two dictionaries</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> dict1 = { "name":"owen", "age": 18 }
+>>> dict2 = { "birthday": "1999-11-22"}
+>>> x = dict( dict1, **dict2 )
+>>> print(x)
+{'name': 'owen', 'age': 18, 'birthday': '1999-11-22'}
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+>>> a = { 'x' : 1 , 'y' : 2 }
+>>> b = { 'y' : 3 , 'z' : 4 }
+>>> c = dict(a,**b)
+>>> print(c)
+{'x': 1, 'y': 3, 'z': 4}
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h3>in operator</h3>
+                    <ul>
+                        <li class="fragment">
+                            <p>The in operator works on dictionaries. (<b>keys</b>)</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> x = {'one': 'apple', 'two': 'banana', 'three': 'orange'}
+>>> 'one' in x
+True
+>>> 'uno' in x
+False
+</code></pre>
+                        </div>
+                        <li class="fragment">
+                            <p>To see whether something appears as a value in a dictionary, you can use the method <b>.values()</b>.</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> x = {'one': 'apple', 'two': 'banana', 'three': 'orange'}
+>>> print('orange' in x.values())
+True
+</code></pre>
+                        </div>
+                        <li class="fragment">
+                            <p>The len function works on dictionaries; it returns the number of key-value pairs</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> x = {'one': 'apple', 'two': 'banana', 'three': 'orange'}
+>>> len(x)
+3
+</code></pre>
+                        </div>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Methods of Dictionary</h3>
+                    <ul>
+                        <li class="fragment">Suppose you are given a string and you want to count how many times each letter appears.</li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+word = 'banana'
+d = dict()
+for c in word:
+    if c not in d:
+        d[c] = 1
+    else:
+        d[c] = d[c] + 1
+print(d)
+</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <pre><code class="output" data-trim contenteditable>
+{'b': 1, 'a': 3, 'n': 2}
+</code></pre>
+                        </div>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">Dictionaries have a method called <b>.get()</b> that takes a key and a default value.</li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+>>> counts = { 'chuck' : 1 , 'annie' : 42, 'jan': 100}
+>>> print(counts.get('jan', 0)) #0 is the default value
+100
+>>> print(counts.get('anni', 1550))
+1550
+</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+word = 'banana'
+d = dict()
+for c in word:
+    d[c] = d.get(c,0) + 1
+print(d)
+</code></pre>
+                        </div>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment"><b>.items(), .keys(), .values()</b>
+                        </li>
+                        <li class="fragment">
+                            <p>Looping Through All Key-Value Pairs</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+favorite = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    }
+for x, y in favorite.items():
+    print(x, y)
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+for x, y in list(favorite.items()):
+    print(x, y)
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="output" data-trim contenteditable>
+jen python
+sarah c
+edward ruby
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p>Looping Through All the Keys in a Dictionary</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+favorite = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    }
+for x in favorite.keys():
+    print(x.title())
+
+#for x in list(favorite.keys()):
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="output" data-trim contenteditable>
+Jen
+Sarah
+Edward
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+friends = ['sarah', 'jen']
+for x in favorite.keys():
+    if x in friends:
+        print(x.title()+" "+favorite[x])
+
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="output" data-trim contenteditable>
+Jen python
+Sarah c
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p>Looping Through All Values in a Dictionary</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+favorite = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    }
+for y in favorite.values():
+    print(y.title())
+
+#for language in list(favorite.values()):
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="output" data-trim contenteditable>
+Python
+C
+Ruby
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h3>Nesting</h3>
+                    <ul>
+                        <li class="fragment">
+                            <p>You can nest a set of dictionaries inside a list, a list of items inside a dictionary, or even a dictionary inside another dictionary. <b>A list or a dictionary cannot be the key (The key should be immutable).</b></p>
+                        </li>
+                        <li class="fragment">
+                            <p> Dictionaries in a list</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+alien_0 = {'color': 'green', 'points': 5}
+alien_1 = {'color': 'yellow', 'points': 10}
+alien_2 = {'color': 'red', 'points': 15}
+
+aliens = [alien_0, alien_1, alien_2]
+</code></pre>
+                        </div>
+                        <li class="fragment">
+                            <p>A List in a Dictionary</p>
+                        </li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+pizza = {
+    'crust': 'thick',
+    'toppings': ['mushrooms', 'extra cheese'],
+    }
+print(pizza['crust'], pizza['toppings'][1])
+</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <pre><code class="output" data-trim contenteditable>
+thick extra cheese
+</code></pre>
+                        </div>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p>You can nest a list inside a dictionary any time you want more than one value to be associated with a single key in a dictionary</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+favorite_languages = {
+    'jen': ['python', 'ruby'],
+    'sarah': ['c'],
+    'edward': ['ruby', 'go'],
+    'phil': ['python', 'haskell'],
+    }
+print(favorite_languages['jen'][0].title())
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="output" data-trim contenteditable>
+Python
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">
+                            <p>A Dictionary in a Dictionary</p>
+                        </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+users = {
+    'aeinstein': {
+        'first': 'albert',
+        'last': 'einstein',
+        'location': 'princeton',
+        },
+
+    'mcurie': {
+        'first': 'marie',
+        'last': 'curie',
+        'location': 'paris',
+        },
+    }
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+full_name = users['aeinstein']['first']+" "+users['aeinstein']['last']
+location = users['aeinstein']['location']
+
+print("Full name: " + full_name.title())
+print("Location: " + location.title())
+</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <pre><code class="output" data-trim contenteditable>
+
+Full name: Albert Einstein
+Location: Princeton
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h3>Dictionaries: Summary</h3>
+                    <ul>
+                        <li class="fragment">
+                            <p>Elements are key-value pairs. Empty dictionary {}</p>
+                        </li>
+                        <li class="fragment">
+                            <p>Features：unpredictable order, key-value pairs are mutable (keys are immutable, but you can modify values). Do not make repeated keys.</p>
+                        </li>
+                        <li class="fragment">
+                            <p><b>.get()</b> (value or default value)</p>
+                            <p>Looping: <b>.items(), .keys(), .values()</b></p>
+                        </li>
+                        <li class="fragment">
+                            <p>in operator works on keys (but you can use .values()) </p>
+                        </li>
+                        <li class="fragment">
+                            <p>Nesting: A list of dictionaries, a list in a dictionary, a dictionary in a dictionary</p>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section data-background="#2980b9" style="color: white">
+                    <h2 style="color: white">4.3 Lottery（大乐透分析）</h2>
+                </section>
+                <section>
+                    <h3>Targets</h3>
+                    <ul>
+                        <li class="fragment">1. We have a list of lottery numbers in 2020. Pick up the five-number groups from the list.</li>
+                        <li class="fragment">2. Find the frequency of each number in the 5-number groups.</li>
+                        <li class="fragment">3. Sort those numbers by their frequencies</li>
+                        <li class="fragment">The feature of data:</li>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+[[2020001, "17 25 26 32 34-04 07"], 
+[2020002, "03 07 18 25 30-02 07"], 
+... ,
+[2020092, "08 11 17 31 35-07 11"]]
+</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <pre><code class="line-numbers" data-trim contenteditable>
+import json
+
+filename = 'lottery.json' 
+with open(filename) as f:
+    data = json.load(f)
+</code></pre>
+                        </div>
+                        <li class="fragment">"Cooking" step by step</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">Step 1: collect the 5 numbers </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+five_number=[]
+for x in data:
+    position=x[1].find('-')
+    string_5=x[1][:position]
+    list_5=string_5.split()
+    five_number.append(list_5)
+</code></pre>
+                    </div>
+                    <ul>
+                        <li class="fragment">Step 2: frequencies </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+d={}
+for x in five_number:
+    for y in x:
+        d[y]=d.get(y,0)+1
+</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <ul>
+                        <li class="fragment">Step 3: sort and display </li>
+                    </ul>
+                    <div class="fragment">
+                        <pre><code class="line-numbers" data-trim contenteditable>
+fre=[]
+for x,y in d.items():
+    fre.append([y,x])
+fre.sort()
+for x in fre:
+    print(x)
+</code></pre>
+                    </div>
+                    <ul>
+                        <li class="fragment">Practice: do the same thing for the 2-number groups. </li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section data-background="#2c3e50" style="color: white; text-align: left;">
+                    <h2 style="color: white">Summary</h2>
+                    <ul>
+                        <li>Strings, Dictionaries</li>
+                        <li>Reading: Python for Everybody Chapter 6, 9</li>
+                    </ul>
+                </section>
+            </section>
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 960,
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.2,
+        maxScale: 1.5,
+
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Set default timing of 2 minutes per slide
+        defaultTiming: 120,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autolaying embedded media (video/audio/iframe)
+        // - null: Media will only autoplay if data-autoplay is present
+        // - true: All media will autoplay, regardless of individual setting
+        // - false: No media will autoplay, regardless of individual setting
+        autoPlayMedia: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: Reveal.navigateNext,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // Hides the address bar on mobile devices
+        hideAddressBar: true,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Parallax background image
+        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+        // Parallax background size
+        parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+        // Number of pixels to move the parallax background per slide
+        // - Calculated automatically unless specified
+        // - Set to 0 to disable movement along an axis
+        parallaxBackgroundHorizontal: null,
+        parallaxBackgroundVertical: null,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        dependencies: [
+            { src: 'plugin/markdown/marked.js' },
+            { src: 'plugin/markdown/markdown.js' },
+            { src: 'plugin/notes/notes.js', async: true },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            // Zoom in and out with Alt+click
+            { src: 'plugin/zoom-js/zoom.js', async: true },
+
+            // Speaker notes
+            { src: 'plugin/notes/notes.js', async: true },
+
+            // MathJax
+            { src: 'plugin/math/math.js', async: true },
+            { src: 'plugin/line-numbers/line-numbers.js' }
+        ]
+    });
+    </script>
+</body>
+
+</html>
